@@ -1,0 +1,50 @@
+/* GENERAL STYLING */
+#cb { margin: 0; padding: 1em; position: fixed; top: 0; left: 0; overflow-y: auto; width: 100%; height: calc(100% - 54px); }
+.menu, #pause, #stop { display: none; }
+#cb #_ { display: block; }
+
+
+/* CONTROL PANELT AT THE BOTTOM OF THE SCREEN */
+#controls { z-index: 100; position: fixed; display: block !important; width: 100%; height: 54px; bottom: 0; left: 0; background: #666; }
+#btns { z-index: 110; position: absolute; display: flex; bottom: 0; right: 0; width: 54px; height: 54px; justify-content: center; align-items: center; background: #333; }
+#btns div i { color: white; font-size: 3em; display: block; }
+#progress { z-index: 110; position: absolute; bottom: 0; left: 54px; height: 54px; width: calc(100% - 54px); }
+#title { pointer-events: none; color: white; margin-top: 0.5em; margin-left: 12px; }
+#time { pointer-events: none; color: white; font-size: 0.8em; margin-left: 12px; }
+#progression { z-index: -5; position: absolute; bottom: 0; left: 54; height: 54px; width: calc(calc(100% - 108px) * 0); background: #444; }
+audio { position: fixed; z-index: 200; width: 100%; bottom: 54px; left: 0; }
+
+
+/* STYLING OF DIRECTORY FILE AND BACK BUTTONS */
+.dir, .file { box-sizing: border-box; display: block; }
+
+.dir { padding: 0.5em 1em; margin-top: 1.5em; margin-bottom: 1.5em; color: white; font-size: 1.5em; }
+#_ > .dir { margin-top: 1em; margin-bottom: 1em; font-size: 2em; }
+.dir:nth-child(odd) { text-align: right; margin-left: 2em; width: calc(100% - 2em); padding-left: 2em; }
+.dir:nth-child(even) { width: calc(100% - 2em); }
+
+.dir img { z-index: 10; box-sizing: border-box; background: white; width: 3.5em; height: 3.5em; position: absolute; border-radius: 100%; transform: translate(0, -1em); }
+.dir:nth-child(odd) img { left: 1.25em; }
+.dir:nth-child(even) img { right: 1.25em; }
+
+.file { width: 100%; padding: 0.75em; margin-bottom: 1em; color: white; }
+.file:nth-child(2) { margin-top: 2em; }
+.file:last-child { margin-bottom: 2em; }
+
+.bb { position: fixed; display: flex; justify-content: center; align-items: center; width: 54px; height: 54px; bottom: 0; left: 0; text-align: center; color: white; font-weight: bold; background: #333; z-index: 100; }
+.bb img { height: 28px; }
+.bb i { font-size: 4em; }
+
+
+/* COLOR SCHEME */
+.blue { background: #00a9fe; }
+.yellow { background: #fed300; }
+.red { background: #e7402e; }
+.green { background: #28a135; }
+.pink { background: #ff30a9; }
+
+.blue img { border: 5px solid #00a9fe; }
+.yellow img { border: 5px solid #fed300; }
+.red img { border: 5px solid #e7402e; }
+.green img { border: 5px solid #28a135; }
+.pink img { border: 5px solid #ff30a9; }
