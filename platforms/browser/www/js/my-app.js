@@ -2,31 +2,15 @@ var myApp = new Framework7();
 var $$ = Dom7;
 var mainView = myApp.addView('.view-main', { dynamicNavbar: true });
 
-//$$(document).on('deviceready', function() { });
-//myApp.onPageInit('about', function (page) { })
 
+// PADS A NUMBER WITH PRECEEDING ZEROS
 Number.prototype.pad = function(size) {
   var s = String(this);
   while (s.length < (size || 2)) {s = "0" + s;}
   return s;
 }
 
-$('#play').click(function() {
-  var player = document.getElementsByTagName('audio')[0];
-  if (player.src != '') {
-    $('#play').toggle();
-    $('#pause').toggle();
-    player.play();
-  }
-})
-
-$('#pause').click(function() {
-  $('#play').toggle();
-  $('#pause').toggle();
-  var player = document.getElementsByTagName('audio')[0];
-  player.pause();
-})
-
+// GENERATE RELEVANT MENU DIVS FROM FOLDER STRUCTURE ON THE SERVER
 function divGenerator(d, r='_') {
 
   var keys = Object.keys(d);
@@ -80,8 +64,7 @@ function divGenerator(d, r='_') {
       }
 
       $('#'+r).append('<a onclick="javascript:showDir(\'' + c + '\')" class="dir ' + c + ' ' + cc + '"><img src="res/' + cc + '.png"/>' + d[keys[i]]['title'].split('_')[1] + '</a>');
-
-      $('#cb').append('<div class="menu" id="' + c + '"><a onclick="showDir(\'' + r + '\')" class="bb"><i class="material-icons">chevron_left</i></a></div>');
+      $('#music_cnt').append('<div class="menu" id="' + c + '"></div>');
 
       divGenerator( d[keys[i]]['cnt'], c );
 
@@ -91,13 +74,28 @@ function divGenerator(d, r='_') {
 
 }
 
+// HIDE ALL DIVS IN #cb AND SHOW THE ONE WITH ID=i
 function showDir(i) {
 
-  $('#cb > div').hide();
+  if (i == '_') {
+    $('#bb').html('<img src="res/fifi_w.png"/>');
+  } else {
+    $('#bb').html('<i class="material-icons">chevron_left</i>');
+  }
+
+  var prev = "_";
+  var pieces = i.split("_");
+  for ( var j = 1; j < pieces.length-2; j++ ) {
+    prev += pieces[j]+"_";
+  }
+  $('#bb').attr("onclick","showDir(\'"+prev+"\')");
+
+  $('#music_cnt > div').hide();
   $('#'+i).show();
 
 }
 
+// SETS RELEVANT SRC FILE AND ADDS EVENTLISTENERS FOR audio TAG
 function playFile(p) {
 
   var player = document.getElementsByTagName('audio')[0];
@@ -143,9 +141,28 @@ function playFile(p) {
 
 }
 
-$$.post('http://app.fifi.dk/content.php', function (d) {
 
-  var obj = JSON.parse(d);
-  divGenerator(obj);
+$$(document).on('deviceready', function() {
+
+  // PLAY BUTTON FUNCTIONALITY
+  $('#play').click(function() {
+    var player = document.getElementsByTagName('audio')[0];
+    if (player.src != '') {
+      $('#play').toggle();
+      $('#pause').toggle();
+      player.play();
+    }
+  });
+
+  // PAUSE BUTTON FUNCTIONALITY
+  $('#pause').click(function() {
+    $('#play').toggle();
+    $('#pause').toggle();
+    var player = document.getElementsByTagName('audio')[0];
+    player.pause();
+  });
+
+  // GET SERVER DIRECTORY CONTENT AND GENERATE MENU STRUCTURE
+  $$.post('http://app.fifi.dk/content.php', function (d) { var obj = JSON.parse(d); divGenerator(obj); });
 
 });
