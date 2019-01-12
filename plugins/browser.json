@@ -15,6 +15,9 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.davidsvane.fifi"
+        },
+        "cordova-allow-background-audio": {
+            "PACKAGE_NAME": "com.davidsvane.fifi"
         }
     },
     "dependent_plugins": {}

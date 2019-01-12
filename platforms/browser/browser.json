@@ -15,6 +15,9 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.davidsvane.fifi"
+        },
+        "cordova-allow-background-audio": {
+            "PACKAGE_NAME": "com.davidsvane.fifi"
         }
     },
     "dependent_plugins": {},
@@ -31,6 +34,7 @@
     "plugin_metadata": {
         "cordova-plugin-whitelist": "1.2.2",
         "cordova-plugin-console": "1.0.7",
-        "cordova-plugin-statusbar": "1.0.1"
+        "cordova-plugin-statusbar": "1.0.1",
+        "cordova-allow-background-audio": "1.0.2"
     }
 }

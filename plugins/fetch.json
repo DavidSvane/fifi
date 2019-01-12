@@ -22,5 +22,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-allow-background-audio": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-allow-background-audio"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
